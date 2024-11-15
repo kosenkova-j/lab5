@@ -46,7 +46,17 @@ class MainActivity : AppCompatActivity() {
         secondFormatButton = findViewById(R.id.radioButton2)
         thirdFormatButton = findViewById(R.id.radioButton3)
 
-
+        when {
+            (firstFormatButton.isActivated) -> {
+                costValue = firstCost * countValue
+            }
+            (secondFormatButton.isActivated) -> {
+                costValue = secondCost * countValue
+            }
+            (thirdFormatButton.isActivated) -> {
+                costValue = thirdCost * countValue
+            }
+        }
 
     }
 }
