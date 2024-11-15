@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">lab5</string>
+
+    <string name="app_label">Цифровая фотография</string>
+    <string name="format">Формат</string>
+    <string name="cost">Стоимость</string>
+    <string name="count">Количество:</string>
+    <string name="hint_text">Например: 5</string>
+
+    <string name="first_format">9 x 12</string>
+    <string name="second_format">10 x 15</string>
+    <string name="third_format">18 x 24</string>
+
+    <string name="first_format_cost">100 руб.</string>
+    <string name="second_format_cost">150 руб.</string>
+    <string name="third_format_cost">300 руб.</string>
+</resources>
