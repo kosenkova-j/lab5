@@ -1,16 +1,20 @@
 package com.example.lab5
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+
+
 class ResultActivity : AppCompatActivity() {
 
-    private lateinit var resultText: TextView
+    private lateinit var backButton: Button
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +28,16 @@ class ResultActivity : AppCompatActivity() {
             insets
         }
 
-        resultText = this.findViewById(R.id.textResult)
+        val buttonBack: Button = this.findViewById(R.id.backButton)
+        val resultText: TextView = this.findViewById(R.id.textResult)
 
-        resultText.text = "Оплатить: " + intent.getStringExtra("RESULT") + " руб."
+        val res = intent.extras!!.getString("RESULT")
+        resultText.text = "Оплатить: $res руб."
+
+        buttonBack.setOnClickListener() {
+            val intent = Intent(this@ResultActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

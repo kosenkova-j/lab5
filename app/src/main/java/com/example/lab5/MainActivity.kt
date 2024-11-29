@@ -33,23 +33,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         val editV: TextView = findViewById(R.id.editTextNumber)
-        val countValue: Int = editV.text.toString().toIntOrNull() ?:0
+        var countValue: Int = editV.text.toString().toIntOrNull() ?:1
         okButton = findViewById(R.id.button)
         firstFormatButton = findViewById(R.id.radioButton)
         secondFormatButton = findViewById(R.id.radioButton2)
         thirdFormatButton = findViewById(R.id.radioButton3)
-
-        when {
-            (firstFormatButton.isChecked) -> {
-                costValue = firstCost * countValue
-            }
-            (secondFormatButton.isChecked) -> {
-                costValue = secondCost * countValue
-            }
-            (thirdFormatButton.isChecked) -> {
-                costValue = thirdCost * countValue
-            }
-        }
+        firstFormatButton.isChecked = true
 
 /*        if (firstFormatButton.isActivated) {
             costValue = firstCost * countValue
@@ -60,8 +49,23 @@ class MainActivity : AppCompatActivity() {
         }*/
 
         okButton.setOnClickListener {
-            val intent = Intent(baseContext, ResultActivity::class.java)
-            intent.putExtra("RESULT", costValue)
+
+            countValue = editV.text.toString().toIntOrNull() ?:1
+
+            when {
+                (firstFormatButton.isChecked) -> {
+                    costValue = firstCost * countValue
+                }
+                (secondFormatButton.isChecked) -> {
+                    costValue = secondCost * countValue
+                }
+                (thirdFormatButton.isChecked) -> {
+                    costValue = thirdCost * countValue
+                }
+            }
+
+            val intent = Intent(this@MainActivity, ResultActivity::class.java)
+            intent.putExtra("RESULT", costValue.toString())
             startActivity(intent)
         }
     }
