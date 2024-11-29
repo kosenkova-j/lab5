@@ -1,34 +1,25 @@
 package com.example.lab5
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
     private lateinit var okButton: Button
     private lateinit var firstFormatButton: RadioButton
     private lateinit var secondFormatButton: RadioButton
     private lateinit var thirdFormatButton: RadioButton
-    val editV: TextView = findViewById(R.id.editTextNumber)
-    var countValue: Int = editV.text.toString().toIntOrNull() ?:0
 
-    var costValue: Int = 0
-    val firstCost: Int = 100
-    val secondCost: Int = 150
-    val thirdCost: Int = 300
+    private var costValue: Int = 0
+    private val firstCost: Int = 100
+    private val secondCost: Int = 150
+    private val thirdCost: Int = 300
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,22 +32,37 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val editV: TextView = findViewById(R.id.editTextNumber)
+        val countValue: Int = editV.text.toString().toIntOrNull() ?:0
         okButton = findViewById(R.id.button)
         firstFormatButton = findViewById(R.id.radioButton)
         secondFormatButton = findViewById(R.id.radioButton2)
         thirdFormatButton = findViewById(R.id.radioButton3)
 
         when {
-            (firstFormatButton.isActivated) -> {
+            (firstFormatButton.isChecked) -> {
                 costValue = firstCost * countValue
             }
-            (secondFormatButton.isActivated) -> {
+            (secondFormatButton.isChecked) -> {
                 costValue = secondCost * countValue
             }
-            (thirdFormatButton.isActivated) -> {
+            (thirdFormatButton.isChecked) -> {
                 costValue = thirdCost * countValue
             }
         }
 
+/*        if (firstFormatButton.isActivated) {
+            costValue = firstCost * countValue
+        } else if (secondFormatButton.isActivated) {
+            costValue = secondCost * countValue
+        } else if (thirdFormatButton.isActivated) {
+            costValue = thirdCost * countValue
+        }*/
+
+        okButton.setOnClickListener {
+            val intent = Intent(baseContext, ResultActivity::class.java)
+            intent.putExtra("RESULT", costValue)
+            startActivity(intent)
+        }
     }
 }
